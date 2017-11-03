@@ -20,13 +20,13 @@ for var = 1,3 do
 	unlock();
 	
 	runApp('com.txy.anywhere');
-	mSleep(10000);
+	mSleep(8000);
 	runApp('com.alibaba.android.rimet');
 	setScreenScale(true, 720, 1280);
-	mSleep(10000);
+	mSleep(20000);
 	tap(360,1200);
 	setScreenScale(false)
-	mSleep(10000)
+	mSleep(20000)
 	
 	-- 根据像素模糊查找考勤按钮
 	考勤={
@@ -43,12 +43,15 @@ for var = 1,3 do
 }
 	x,y = findMultiColorInRegionFuzzyByTable(考勤, 80, 0, 0, 719, 1279);
 	if x ~= -1 and y ~= -1 then
-		os.execute("input mouse tap x y"); --对HTML tap无效
+		--os.execute("input mouse tap x y"); --对HTML tap无效
+		--dialog("找到了",1);
+		tap(x,y);
 	else
-		dialog("未找到,尝试",1);
-		os.execute("input mouse tap 90 690")
+		--os.execute("input mouse tap 90 690");
+		--dialog("未找到,尝试",1);
+		tap(90,690);
 	end
-	mSleep(100000);
+	mSleep(10000);
 	
 	
 	-- 根据像素模糊查找打卡按钮
@@ -66,22 +69,24 @@ for var = 1,3 do
 }
 	x1,y1 = findMultiColorInRegionFuzzyByTable(打卡, 80, 0, 0, 719, 1279);
 	if x1 ~= -1 and y1 ~= -1 then
-		os.execute("input mouse tap x1 y1");
+		--os.execute("input mouse tap x1 y1");
+		tap(x1,y1);
 	else
 		setScreenScale(true, 720, 1280);
 		moveTo(360,800,360,300);
 		setScreenScale(false)
 		x1,y1 = findMultiColorInRegionFuzzyByTable(打卡, 80, 0, 0, 719, 1279); 
 		if x1 ~= -1 and y1 ~= -1 then
-			os.execute("input mouse tap x1 y1");
+			--os.execute("input mouse tap x1 y1");
+			tap(x1,y1);
 		else
 			dialog("失败了");
+			notify();
 		end
 	end
 	
-	mSleep(10000);
+	mSleep(5000);
 	closeApp('com.alibaba.android.rimet');
 	closeApp('com.txy.anywhere');
-	notify();
 	mSleep(5000);
 end

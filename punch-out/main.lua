@@ -19,8 +19,6 @@ for var = 1,3 do
 	
 	unlock();
 	
-	runApp('com.txy.anywhere');
-	mSleep(8000);
 	runApp('com.alibaba.android.rimet');
 	setScreenScale(true, 720, 1280);
 	mSleep(20000);
@@ -87,6 +85,5 @@ for var = 1,3 do
 	
 	mSleep(5000);
 	closeApp('com.alibaba.android.rimet');
-	closeApp('com.txy.anywhere');
 	mSleep(5000);
 end
